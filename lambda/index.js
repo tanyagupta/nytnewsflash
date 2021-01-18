@@ -100,26 +100,34 @@ const YesIntentHandler = {
           j++
 
         }
+        var response_clean = response_string.replace(/\&/ig, 'and')
+        sessionAttributes.lastSpeech = response_clean;
+        var display_text = (ALL_NEWS_SET[NEWSINDEX][0]).replace(/\&/ig, 'and')
+        var display_image = ALL_NEWS_SET[NEWSINDEX][4] ? "https://static01.nyt.com/"+ALL_NEWS_SET[NEWSINDEX][4] : "skill-package/assets/social-media-1989152_640.jpg";
+
+        NEWSINDEX=NEWSINDEX+STEP;
+
+        const speakOutput = response_clean+" "+"Would you like more news?";
+        //const speakOutput = 'Yes yes yes';
+
+          return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.withSimpleCard(SKILL_NAME,"HELLO")
+            .withStandardCard(SKILL_NAME,display_text,display_image)
+            .withShouldEndSession(false)
+            .reprompt('Would you like some more news?')
+            .getResponse();
       }
+      else{
+                    return handlerInput.responseBuilder
+                      .speak("bye")
+                      .withShouldEndSession(true)
+                      .withSimpleCard(SKILL_NAME,"bye")
+                      .getResponse();
+                  }
 
 
-      var response_clean = response_string.replace(/\&/ig, 'and')
-      sessionAttributes.lastSpeech = response_clean;
-      var display_text = (ALL_NEWS_SET[NEWSINDEX][0]).replace(/\&/ig, 'and')
-      var display_image = ALL_NEWS_SET[NEWSINDEX][4] ? "https://static01.nyt.com/"+ALL_NEWS_SET[NEWSINDEX][4] : "skill-package/assets/social-media-1989152_640.jpg";
 
-      NEWSINDEX=NEWSINDEX+STEP;
-
-      const speakOutput = response_clean+" "+"Would you like more news?";
-      //const speakOutput = 'Yes yes yes';
-
-        return handlerInput.responseBuilder
-          .speak(speakOutput)
-          //.withSimpleCard(SKILL_NAME,"HELLO")
-          .withStandardCard(SKILL_NAME,display_text,display_image)
-          .withShouldEndSession(false)
-          .reprompt('Would you like some more news?')
-          .getResponse();
     }
 };
 const NoIntentHandler = {
