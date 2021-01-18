@@ -22,7 +22,7 @@
       },
       "isAvailableWorldwide": true,
       "testingInstructions": "Sample Testing Instructions.",
-      "category": "KNOWLEDGE_AND_TRIVIA",
+      "category": "NEWS",
       "distributionCountries": []
     },
     "apis": {
@@ -32,6 +32,19 @@
         }
       }
     },
-    "manifestVersion": "1.0"
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "locales": {
+        "en-US": {
+          "privacyPolicyUrl": "http://learnin60seconds.com/tos",
+          "termsOfUseUrl": "http://learnin60seconds.com/tos"
+        }
+      },
+      "allowsPurchases": false,
+      "usesPersonalInfo": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false
+    }
   }
 }
