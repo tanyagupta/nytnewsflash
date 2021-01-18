@@ -10,6 +10,9 @@ const SKILL_NAME ="New York Times News"
 const STOP_MESSAGE = 'Goodbye!';
 var ALL_NEWS_SET;
 var INTROS=["Leading the news today is the headline ","In other news we also have a story ", "Third on the list is the following headline ","The New York Times reports as follows: ","Another news for today is the following: ","Our last headline of the day is as follows: "]
+var MAX
+const STEP = 5
+var NEWSINDEX
 
 // const LaunchRequestHandler = {
 //     canHandle(handlerInput) {
@@ -38,19 +41,30 @@ const GetNewsIntentHandler = {
         var info_set = JSON.parse(result)
         //var info_set = [["For Trump and the Nation, a Final Test of Accountability","WASHINGTON — Barely 11 months after President Trump was acquitted in a momentous Senate trial, the nation now confronts the possibility of yet another impeachment battle in the twilight of his presidency, a final showdown that will test the boundaries of politics, accountability and the Constitution.","The push by Democrats to impeach the president for his role in inciting the attack on the Capitol underscores how American politics has been profoundly shaken in ways still hard to measure.","https://www.nytimes.com/2021/01/09/us/politics/trump-impeachment-possible.html","images/2021/01/09/us/politics/09dc-impeach-1/09dc-impeach-1-articleLarge.jpg","By Peter Baker","Washington","U.S.","Politics"]]
         ALL_NEWS_SET = info_set
+        MAX = Number(ALL_NEWS_SET.length)-1;
+
         var response_string = ""
-        for (var i=0;i<6;i++){
+        for (var i=0;i<=STEP;i++){
+          j=0
           response_string=response_string
-          +INTROS[i]
-          +" "+ALL_NEWS_SET[i][0]+"<break time='1s'/>"+ALL_NEWS_SET[i][2]+"<break time='1s'/>"+"<break time='1s'/>"+"Here's the lead Para: "+ALL_NEWS_SET[i][1]
-          +"<break time='2s'/>"
+          +INTROS[j]
+          +" "+ALL_NEWS_SET[i][0]
+          +"<break time='1s'/>"
+          +" "+ALL_NEWS_SET[i][2]
+          +"<break time='1s'/>"
+          +"Here's the lead Para:"
+          +" "+ALL_NEWS_SET[i][1]
+          +"<break time='2s'/>"+" ";
+          j++
 
         }
+        NEWSINDEX=STEP+1
+
 
         var response_clean = response_string.replace(/\&/ig, 'and')
         sessionAttributes.lastSpeech = response_clean;
         var display_text = (ALL_NEWS_SET[0][0]).replace(/\&/ig, 'and')
-        var display_image = ALL_NEWS_SET[0][4] ? "https://static01.nyt.com/"+ALL_NEWS_SET[0][4] : "skill-package/assets/social-media-1989152_640.jpg";
+        var display_image = ALL_NEWS_SET[0][4] ? "https://static01.nyt.com/" +ALL_NEWS_SET[0][4] : "skill-package/assets/social-media-1989152_640.jpg";
 
         const speakOutput = response_clean+" "+"Would you like more news?";
         return handlerInput.responseBuilder
@@ -68,12 +82,44 @@ const YesIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.YesIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Yes yes yes';
+      const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+      var response_string = ""
+
+      if (NEWSINDEX+STEP<MAX){
+        for(var i = NEWSINDEX; i<=NEWSINDEX+STEP;i++){
+          var j=0
+          response_string=response_string
+          +INTROS[j]
+          +" "+ALL_NEWS_SET[i][0]
+          +"<break time='1s'/>"
+          +" "+ALL_NEWS_SET[i][2]
+          +"<break time='1s'/>"
+          +"Here's the lead Para:"
+          +" "+ALL_NEWS_SET[i][1]
+          +"<break time='2s'/>"+" "
+          j++
+
+        }
+      }
+
+
+      var response_clean = response_string.replace(/\&/ig, 'and')
+      sessionAttributes.lastSpeech = response_clean;
+      var display_text = (ALL_NEWS_SET[NEWSINDEX][0]).replace(/\&/ig, 'and')
+      var display_image = ALL_NEWS_SET[NEWSINDEX][4] ? "https://static01.nyt.com/"+ALL_NEWS_SET[NEWSINDEX][4] : "skill-package/assets/social-media-1989152_640.jpg";
+
+      NEWSINDEX=NEWSINDEX+STEP;
+
+      const speakOutput = response_clean+" "+"Would you like more news?";
+      //const speakOutput = 'Yes yes yes';
 
         return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt(speakOutput)
-            .getResponse();
+          .speak(speakOutput)
+          //.withSimpleCard(SKILL_NAME,"HELLO")
+          .withStandardCard(SKILL_NAME,display_text,display_image)
+          .withShouldEndSession(false)
+          .reprompt('Would you like some more news?')
+          .getResponse();
     }
 };
 const NoIntentHandler = {
