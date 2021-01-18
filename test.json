@@ -12,12 +12,14 @@
           "keywords": [
             "news",
             "New York Times",
-            "New York Times News"
+            "flash briefing",
+            "news flash",
+            "New York Times flash briefing"
           ],
-          "name": "New York Times Flash Briefing",
+          "name": "nytnewsflash",
           "smallIconUri": "https://raw.githubusercontent.com/tanyagupta/tanyagupta.github.io/master/NYT_icon_108_A2Z.png",
           "largeIconUri": "https://raw.githubusercontent.com/tanyagupta/tanyagupta.github.io/master/NYT_icon_512_A2Z.png",
-          "description": "Updated daily, this skill gives you New York Times news. Data provided by The New York Times. This skill is best used with Echo or Echo Dot. Say \"Alexa open New York Times News\" to get started. "
+          "description": "Updated daily, this skill gives you the latest New York Times news. Data provided by The New York Times. This skill is best used with Echo or Echo Dot. Say \"Alexa open New York Times News\" to get started. "
         }
       },
       "isAvailableWorldwide": true,

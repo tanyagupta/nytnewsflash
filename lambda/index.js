@@ -8,6 +8,8 @@ var requestlib = require('request');
 
 const SKILL_NAME ="New York Times News"
 const STOP_MESSAGE = 'Goodbye! Thanks for listening to New York Times flash briefing';
+const HELP_MESSAGE = 'You can say give me a flash news briefing, or, you can say stop... What can I help you with?';
+const HELP_REPROMPT = 'What can I help you with?';
 var ALL_NEWS_SET;
 var INTROS=["Leading the news today is the headline ","In other news we also have a story ", "Third on the list is the following headline ","The New York Times reports as follows: ","Another news for today is the following: ","Our last headline of the day is as follows: "]
 var MAX
@@ -48,7 +50,7 @@ const GetNewsIntentHandler = {
         for (var i=0;i<=STEP;i++){
           j=0
           response_string=response_string
-          +INTROS[j]
+          +" "+INTROS[j]
           +" "+ALL_NEWS_SET[i][0]
           +"<break time='1s'/>"
           +" "+ALL_NEWS_SET[i][2]
@@ -173,11 +175,11 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'You can say hello to me! How can I help?';
+
 
         return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt(speakOutput)
+            .speak(HELP_MESSAGE)
+            .reprompt(HELP_REPROMPT)
             .getResponse();
     }
 };
