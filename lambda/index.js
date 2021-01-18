@@ -144,6 +144,29 @@ const NoIntentHandler = {
             .getResponse();
     }
 };
+
+
+const RepeatIntentHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return request.type === 'IntentRequest'
+      && request.intent.name === 'AMAZON.RepeatIntent';
+  },
+  handle(handlerInput) {
+
+    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+
+    const REPEAT = sessionAttributes.lastSpeech
+
+
+    return handlerInput.responseBuilder
+      .speak(REPEAT+" Would you like more news?")
+      .reprompt(REPEAT+" Would you like more news?")
+      .getResponse();
+  },
+};
+
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -229,6 +252,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         NoIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
+        RepeatIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
         )
