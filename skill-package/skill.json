@@ -5,9 +5,9 @@
         "en-US": {
           "summary": "Updated daily, this skill gives you New York Times news. Data provided by The New York Times. Say \"Alexa open New York Times News\" to get started",
           "examplePhrases": [
-            "open flash briefing",
+            "Alexa open flash briefing",
             "Alexa open my flash news briefing from New York Times",
-            "Give me my flash briefing"
+            "Alexa give me my news briefing"
           ],
           "keywords": [
             "news",
