@@ -13,6 +13,7 @@ var INTROS=["Leading the news today is the headline ","In other news we also hav
 var MAX
 const STEP = 5
 var NEWSINDEX
+const LAST_NEWS = "You have now finished hearing about all the news for today";
 
 // const LaunchRequestHandler = {
 //     canHandle(handlerInput) {
@@ -120,9 +121,9 @@ const YesIntentHandler = {
       }
       else{
                     return handlerInput.responseBuilder
-                      .speak("bye")
+                      .speak(LAST_NEWS)
                       .withShouldEndSession(true)
-                      .withSimpleCard(SKILL_NAME,"bye")
+                      .withSimpleCard(SKILL_NAME,LAST_NEWS)
                       .getResponse();
                   }
 
