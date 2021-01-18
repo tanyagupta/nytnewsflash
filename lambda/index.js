@@ -143,11 +143,26 @@ const NoIntentHandler = {
 
         return handlerInput.responseBuilder
             .speak(STOP_MESSAGE)
+            .withShouldEndSession(true)
             .getResponse();
     }
 };
 
 
+const ExitIntentHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return request.type === 'IntentRequest'
+      && (request.intent.name === 'AMAZON.CancelIntent'
+        || request.intent.name === 'AMAZON.StopIntent');
+  },
+  handle(handlerInput) {
+    return handlerInput.responseBuilder
+      .speak(STOP_MESSAGE)
+      .withShouldEndSession(true)
+      .getResponse();
+  },
+};
 const RepeatIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -192,8 +207,9 @@ const CancelAndStopIntentHandler = {
     handle(handlerInput) {
         const speakOutput = 'Goodbye!';
         return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .getResponse();
+        .speak(STOP_MESSAGE)
+        .withShouldEndSession(true)
+        .getResponse();
     }
 };
 const SessionEndedRequestHandler = {
@@ -255,6 +271,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         RepeatIntentHandler,
+        ExitIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
         )
