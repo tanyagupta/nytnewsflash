@@ -7,7 +7,7 @@ var requestlib = require('request');
 
 
 const SKILL_NAME ="New York Times News"
-const STOP_MESSAGE = 'Goodbye!';
+const STOP_MESSAGE = 'Goodbye! Thanks for listening to New York Times flash briefing';
 var ALL_NEWS_SET;
 var INTROS=["Leading the news today is the headline ","In other news we also have a story ", "Third on the list is the following headline ","The New York Times reports as follows: ","Another news for today is the following: ","Our last headline of the day is as follows: "]
 var MAX
@@ -134,21 +134,20 @@ const YesIntentHandler = {
 const NoIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.NoIntent';
     },
     handle(handlerInput) {
         const speakOutput = 'No no no';
 
         return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt(speakOutput)
+            .speak(STOP_MESSAGE)
             .getResponse();
     }
 };
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.NoIntent';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
         const speakOutput = 'You can say hello to me! How can I help?';
