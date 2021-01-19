@@ -3,7 +3,7 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "summary": "Updated daily, this skill gives you New York Times news. Data provided by The New York Times. Say \"Alexa open New York Times News\" to get started",
+          "summary": "Updated daily, this skill gives you New York Times news. Say \"Alexa open New York Times News\" to get started. Data provided by The New York Times.",
           "examplePhrases": [
             "Alexa open flash briefing",
             "Alexa open my flash news briefing from New York Times",
@@ -14,7 +14,7 @@
             "New York Times",
             "New York Times News"
           ],
-          "name": "New York Times Flash Briefing",
+          "name": "Unofficial New York Times Flash Briefing",
           "smallIconUri": "https://raw.githubusercontent.com/tanyagupta/nytnewsflash/main/skill-package/assets/icon_108_A2Z.png",
           "largeIconUri": "https://raw.githubusercontent.com/tanyagupta/nytnewsflash/main/skill-package/assets/icon_512_A2Z.png",
           "description": "Updated daily, this skill gives you New York Times news. Data provided by The New York Times. This skill is best used with Echo or Echo Dot. Say \"Alexa open New York Times News\" to get started. "
