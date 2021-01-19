@@ -54,9 +54,9 @@ const GetNewsIntentHandler = {
           +" "+ALL_NEWS_SET[i][0]
           +"<break time='1s'/>"
           +" "+ALL_NEWS_SET[i][2]
-          +"<break time='1s'/>"
-          +"Here's the lead Para:"
-          +" "+ALL_NEWS_SET[i][1]
+          //+"<break time='1s'/>"
+          //+"Here's the lead Para:"
+          //+" "+ALL_NEWS_SET[i][1]
           +"<break time='2s'/>"+" ";
           j++
 
@@ -96,9 +96,9 @@ const YesIntentHandler = {
           +" "+ALL_NEWS_SET[i][0]
           +"<break time='1s'/>"
           +" "+ALL_NEWS_SET[i][2]
-          +"<break time='1s'/>"
-          +"Here's the lead Para:"
-          +" "+ALL_NEWS_SET[i][1]
+          //+"<break time='1s'/>"
+          //+"Here's the lead Para:"
+          //+" "+ALL_NEWS_SET[i][1]
           +"<break time='2s'/>"+" "
           j++
 
