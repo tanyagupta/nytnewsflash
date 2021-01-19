@@ -7,7 +7,7 @@ var requestlib = require('request');
 
 
 const SKILL_NAME ="New York Times News"
-const STOP_MESSAGE = 'Goodbye! Thanks for listening to New York Times flash briefing';
+const STOP_MESSAGE = 'Goodbye! Thanks for listening to New York Times flash briefing by Learn in 60 seconds';
 const HELP_MESSAGE = 'You can say give me a flash news briefing, or, you can say stop... What can I help you with?';
 const HELP_REPROMPT = 'What can I help you with?';
 var ALL_NEWS_SET;
