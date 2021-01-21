@@ -3,11 +3,10 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "summary": "Updated daily, this skill gives you New York Times news. Say \"Alexa open New York Times News\" to get started. Data provided by The New York Times.",
+          "summary": "Updated daily, this skill gives you New York Times news. Say \"Alexa open flash briefing\" to get started. Data provided by The New York Times.",
           "examplePhrases": [
             "Alexa open flash briefing",
-            "Alexa open my flash news briefing from New York Times",
-            "Alexa give me my news briefing"
+            "Alexa begin flash briefing"
           ],
           "keywords": [
             "news",
@@ -17,7 +16,7 @@
           "name": "Unofficial New York Times Flash Briefing",
           "smallIconUri": "https://raw.githubusercontent.com/tanyagupta/nytnewsflash/main/skill-package/assets/icon_108_A2Z.png",
           "largeIconUri": "https://raw.githubusercontent.com/tanyagupta/nytnewsflash/main/skill-package/assets/icon_512_A2Z.png",
-          "description": "Updated daily, this skill gives you New York Times news. Data provided by The New York Times. This skill is best used with Echo or Echo Dot. Say \"Alexa open New York Times News\" to get started. "
+          "description": "Updated daily, this skill gives you today's news. Data provided by The New York Times. This skill is best used with Echo or Echo Dot. Say \"Alexa open flash briefing\" to get started. "
         }
       },
       "isAvailableWorldwide": true,
@@ -28,7 +27,7 @@
     "apis": {
       "custom": {
         "endpoint": {
-          "uri": "arn:aws:lambda:us-east-1:975742344863:function:ask-nytnewsflash-default-default-1610893520095"
+          "uri": "arn:aws:lambda:us-east-1:975742344863:function:ask-nytnewsflash-default-default-1610893520095:DEPLOYED"
         }
       }
     },

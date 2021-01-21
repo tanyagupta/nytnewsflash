@@ -8,10 +8,10 @@ var requestlib = require('request');
 
 const SKILL_NAME ="New York Times News"
 const STOP_MESSAGE = 'Goodbye! Thanks for listening to New York Times flash briefing by Learn in 60 seconds';
-const HELP_MESSAGE = 'You can say give me a flash news briefing, or, you can say stop... What can I help you with?';
+const HELP_MESSAGE = 'You can say launch flash news briefing, or, you can say stop... What can I help you with?';
 const HELP_REPROMPT = 'What can I help you with?';
 var ALL_NEWS_SET;
-var INTROS=["Leading the news today is the headline ","In other news we also have a story ", "Third on the list is the following headline ","The New York Times reports as follows: ","Another news for today is the following: ","Our last headline of the day is as follows: "]
+var INTROS=["Leading the news today is the headline ","In other news we also have a story ", "Third on the list is the following headline ","The New York Times reports as follows: ","Our last headline of the day is as follows: "]
 var MAX
 const STEP = 5
 var NEWSINDEX
@@ -47,7 +47,7 @@ const GetNewsIntentHandler = {
         MAX = Number(ALL_NEWS_SET.length)-1;
         j=0
         var response_string = ""
-        for (var i=0;i<=STEP;i++){
+        for (var i=0;i<STEP;i++){
 
           response_string=response_string
           +" "+INTROS[j]
@@ -67,7 +67,8 @@ const GetNewsIntentHandler = {
         var response_clean = response_string.replace(/\&/ig, 'and')
         sessionAttributes.lastSpeech = response_clean;
         var display_text = (ALL_NEWS_SET[0][0]).replace(/\&/ig, 'and')
-        var display_image = ALL_NEWS_SET[0][4] ? "https://static01.nyt.com/" +ALL_NEWS_SET[0][4] : "skill-package/assets/social-media-1989152_640.jpg";
+        var display_image = ALL_NEWS_SET[NEWSINDEX][4] ? "https://static01.nyt.com/"+ALL_NEWS_SET[NEWSINDEX][4] : "https://raw.githubusercontent.com/tanyagupta/nytnewsflash/main/skill-package/assets/social-media-1989152_640.jpg";
+
 
         const speakOutput = response_clean+" "+"Would you like more news?";
         return handlerInput.responseBuilder
@@ -88,8 +89,8 @@ const YesIntentHandler = {
       const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
       var response_string = ""
       var j=0
-      if (NEWSINDEX+STEP<MAX){
-        for(var i = NEWSINDEX; i<=NEWSINDEX+STEP;i++){
+      if (NEWSINDEX+STEP<=MAX){
+        for(var i = NEWSINDEX; i<NEWSINDEX+STEP;i++){
 
           response_string=response_string
           +INTROS[j]
@@ -106,7 +107,7 @@ const YesIntentHandler = {
         var response_clean = response_string.replace(/\&/ig, 'and')
         sessionAttributes.lastSpeech = response_clean;
         var display_text = (ALL_NEWS_SET[NEWSINDEX][0]).replace(/\&/ig, 'and')
-        var display_image = ALL_NEWS_SET[NEWSINDEX][4] ? "https://static01.nyt.com/"+ALL_NEWS_SET[NEWSINDEX][4] : "skill-package/assets/social-media-1989152_640.jpg";
+        var display_image = ALL_NEWS_SET[NEWSINDEX][4] ? "https://static01.nyt.com/"+ALL_NEWS_SET[NEWSINDEX][4] : "https://raw.githubusercontent.com/tanyagupta/nytnewsflash/main/skill-package/assets/social-media-1989152_640.jpg";
 
         NEWSINDEX=NEWSINDEX+STEP;
 

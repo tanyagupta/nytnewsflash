@@ -19,9 +19,7 @@
                     "name": "GetNewsIntent",
                     "slots": [],
                     "samples": [
-                        "flash briefing",
-                        "news flash",
-                        "give me news"
+                        "flash briefing"
                     ]
                 },
                 {
